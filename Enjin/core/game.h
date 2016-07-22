@@ -3,6 +3,7 @@
 #include "config.h"
 
 #include "input.h"
+#include "camera.h"
 
 class Game
 {

@@ -1,13 +1,11 @@
 #include "input.h"
 
-Input::Input(GLint width, GLint height, Camera& camera)
-	: m_windowWidth(width), m_windowHeight(height),
-	  m_mainCamera(camera)
+Input::Input()
 {
 	m_firstMouse = true;
 
-	m_lastX = GLfloat(m_windowWidth) / 2.0f;
-	m_lastY = GLfloat(m_windowHeight) / 2.0f;
+	m_lastX = GLfloat(SCREEN_WIDTH) / 2.0f;
+	m_lastY = GLfloat(SCREEN_HEIGHT) / 2.0f;
 }
 
 void Input::HandleKeyboardCallblack(GLFWwindow * window, int key, int scancode, int action, int mode)
@@ -39,6 +37,4 @@ void Input::HandleMouseCallblack(double xpos, double ypos)
 
 	m_lastX = (GLfloat)xpos;
 	m_lastY = (GLfloat)ypos;
-
-	m_mainCamera.ProcessMouseMovement(xoffset, yoffset);
 }

@@ -70,15 +70,15 @@ void Mesh::Draw(Shader shader)
 		else if (name == "texture_reflection")
 			ss << reflectionNr++;
 		number = ss.str();
-		
+
 		// Setting the sampler to the correct texture unit
-		glUniform1i(glGetUniformLocation(shader.m_program, (name + number).c_str()), i);
+		shader.SetUniform((name + number).c_str(), i);
 
 		// Unbind the texture
 		glBindTexture(GL_TEXTURE_2D, this->m_textures[i].id);
 	}
 
-	glUniform1f(glGetUniformLocation(shader.m_program, "material.shininess"), 16.0f);
+	shader.SetUniform("material.shininess", 16.0f);
 
 	// Draw mesh
 	glBindVertexArray(this->m_VAO);

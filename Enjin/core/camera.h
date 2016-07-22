@@ -2,50 +2,70 @@
 
 #include "config.h"
 
-// Default camera values
-const GLfloat YAW = -90.0f;
-const GLfloat PITCH = 0.0f;
-const GLfloat SPEED = 3.0f;
-const GLfloat SENSITIVTY = 0.25f;
-const GLfloat ZOOM = 45.0f;
-
-enum CameraMovement {
-	FORWARD,
-	BACKWARD,
-	LEFT,
-	RIGHT
-};
+#define CAMERA_SPEED 10.0f
 
 class Camera
 {
 public:
-	// Camera attributes
-	vec3 m_position;
-	vec3 m_up;
-	vec3 m_worldUp;
-	vec3 m_right;
-	vec3 m_frontHeading;
-
-	// Camera options
-	GLfloat m_movementSpeed;
-	GLfloat m_mouseSensitivity;
-	GLfloat m_zoom;
-	
-	// Euler Angles
-	GLfloat m_yaw;
-	GLfloat m_pitch;
-
 	// Constructor
 	Camera();
 
+	// Destructor
+	~Camera();
+
 	// Functions
-	mat4 GetViewMatrix();
-	void ProcessKeyboard(CameraMovement direction, GLfloat deltaTime);
-	void ProcessMouseMovement(GLfloat xOffset, GLfloat yOffset, GLboolean constrainPitch = true);
-	void ProcessMouseScroll(GLfloat yOffset);
+	// Reset the camera to default
+	void Reset();
+	
+	// Move the camera along a direction
+	void Move(vec3 direction);
+	
+	// Updates the camera
+	void Update();
+
+	// Change the pitch (up, down) for the free camera
+	void ChangePitch(float degrees);
+	
+	// Change heading (left, right) for the free camera
+	void ChangeHeading(float degrees);
+
+	// Inline Functions
+	inline void SetPosition(const vec3& pos)
+	{
+		this->position = pos;
+	}
+
+	inline void SetDirection(const vec3& dir)
+	{
+		this->direction = dir;
+	}
+
+	inline vec3 GetPositon() const
+	{
+		return this->position;
+	}
+
+	inline vec3 GetDirection() const
+	{
+		return this->direction;
+	}
+
+	inline mat4 GetViewMatrix() const
+	{
+		return this->viewMatrix;
+	}
+
+	inline mat4 GetProjectionMatrix() const
+	{
+		return this->projectionMatrix;
+	}
 
 private:
-	// Functions
-	void UpdateCameraVectors();
-};
+	vec3 position;
+	vec3 direction;
 
+	mat4 viewMatrix;
+	mat4 projectionMatrix;
+	
+	// Functions
+};

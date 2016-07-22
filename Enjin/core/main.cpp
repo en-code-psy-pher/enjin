@@ -11,17 +11,14 @@ GLFWwindow* window;
 GLfloat deltaTime = 0.0f;
 GLfloat lastFrame = 0.0f;
 
-GLint width = 800;
-GLint height = 600;
-
 // Main Camera
 Camera mainCamera;
 
 // Input
-Input input(width, height, mainCamera);
+Input input;
 
 // Game
-Game game(mainCamera, input);
+//Game game(mainCamera, input);
 
 // Call back functions
 static void KeyboardCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
@@ -60,7 +57,7 @@ int main()
 	glfwWindowHint(GLFW_DOUBLEBUFFER, true);
 
 	// Create and set window
-	window = glfwCreateWindow(width, height, "Codex Enjin 0.0", NULL, NULL);
+	window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Enjin 0.0", NULL, NULL);
 
 	if (!window)
 	{
@@ -87,13 +84,13 @@ int main()
 	}
 
 	// Define the viewport dimensions
-	glViewport(0, 0, width, height);
+	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	// OpenGL options
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
-	game.Initialize();
+	//game.Initialize();
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -105,13 +102,13 @@ int main()
 		// Check if any events have been activiated (key pressed, mouse moved etc.) and call corresponding response functions
 		glfwPollEvents();
 
-		game.Update(deltaTime);
+		//game.Update(deltaTime);
 
 		// Clear the colorbuffer
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		game.Render();
+		//game.Render();
 
 		glfwSwapBuffers(window);
 	}

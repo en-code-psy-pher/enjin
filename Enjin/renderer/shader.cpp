@@ -1,9 +1,5 @@
 #include "shader.h"
 
-Shader::Shader()
-{
-}
-
 Shader::Shader(const GLchar* vertexPath, const GLchar* fragmentPath)
 {
 	string vertexCode;

@@ -1,14 +1,24 @@
 TODO:
-
-- Implement quaternion rotation, https://github.com/opengl-tutorials/ogl/blob/master/common/quaternion_utils.cpp, 
-- Pre-calculate the normal matrix, viz N = mat3(transpose(inverse(model))) * normal;
-- Use std::map to store a library of the shader programs and their uniform location and values OR https://www.reddit.com/r/gamedev/comments/1smezy/how_to_architect_glsl_shaders_in_a_game_engine/
-- Destructors for every class.
-- Add shiniess to Mesh class?
-- Refactor Camera class.
-
-	Refactor
+	Refactor (General)
 - Use for range wherever possible.
+- Destructors for every class?
+- Pre-calculate the normal matrix, viz N = mat3(transpose(inverse(model))) * normal;
+	
+	Refactor Mesh/Model class
+- Read ambient, diffuse, specular, and shininess from .obj files
+
+	Refactor Camera class
+- Use quaternions https://github.com/opengl-tutorials/ogl/blob/master/common/quaternion_utils.cpp, 
+- Change the way the camera is initialized, and updated.
+
+	Refactor Shader class
+- https://www.reddit.com/r/gamedev/comments/1smezy/how_to_architect_glsl_shaders_in_a_game_engine/
+- Read the shader
+- Get the uniform names
+- Store the uniform and attributes in a hash table, where the name is the key
+ -> The value stored will be a pointer to the address of the uniforms value (values can change during the flow of the program, such as the view matrix)
+
+--> What do I do with uniform block layouts in my shaders? (Don't include them??)
 
 References
 http://www.opengl-tutorial.org/miscellaneous/math-cheatsheet/ 
