@@ -1,0 +1,16 @@
+TODO:
+
+- Implement quaternion rotation, https://github.com/opengl-tutorials/ogl/blob/master/common/quaternion_utils.cpp, 
+- Pre-calculate the normal matrix, viz N = mat3(transpose(inverse(model))) * normal;
+- Use std::map to store a library of the shader programs and their uniform location and values OR https://www.reddit.com/r/gamedev/comments/1smezy/how_to_architect_glsl_shaders_in_a_game_engine/
+- Destructors for every class.
+- Add shiniess to Mesh class?
+- Refactor Camera class.
+
+	Refactor
+- Use for range wherever possible.
+
+References
+http://www.opengl-tutorial.org/miscellaneous/math-cheatsheet/ 
+http://ogldev.atspace.co.uk/index.html
+http://www.opengl-tutorial.org/
