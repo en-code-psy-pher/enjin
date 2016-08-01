@@ -3,6 +3,7 @@ TODO:
 - Use for range wherever possible.
 - Destructors for every class?
 - Pre-calculate the normal matrix, viz N = mat3(transpose(inverse(model))) * normal;
+- Perform all matrix multiplication before passing it to the GPU.
 	
 	Refactor Mesh/Model class
 - Read ambient, diffuse, specular, and shininess from .obj files
