@@ -30,11 +30,11 @@ void Game::Initialize()
 
 	m_lightSpot = SpotLight(vec3(0.0f, 10.0f, 0.0f), vec3(0.0f, -1.0f, 0.0f), 1.0f, 0.009f, 0.0032f, vec3(0.0f), vec3(1.0f), vec3(1.0f), glm::cos(glm::radians(12.5f)), glm::cos(glm::radians(15.0f)));
 
-	m_terrain = Model("models/terrain/terrain.obj");
-	m_nanosuit = Model("models/nanosuit/nanosuit.obj");
+	m_terrain = Model("assets/models/terrain/terrain.obj");
+	m_nanosuit = Model("assets/models/nanosuit/nanosuit.obj");
 
-	m_shaderSceneLighting = Shader("shaders/sceneLighting.vs", "shaders/sceneLighting.fs");
-	m_shaderLamp = Shader("shaders/lamp.vs", "shaders/lamp.fs");
+	m_shaderSceneLighting = Shader("assets/shaders/sceneLighting.vs", "shaders/sceneLighting.fs");
+	m_shaderLamp = Shader("assets/shaders/lamp.vs", "shaders/lamp.fs");
 }
 
 void Game::Update(float deltaTime)
