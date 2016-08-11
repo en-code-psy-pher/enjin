@@ -14,58 +14,45 @@ public:
 	~Camera();
 
 	// Functions
-	// Reset the camera to default
 	void Reset();
-	
-	// Move the camera along a direction
 	void Move(vec3 direction);
-	
-	// Updates the camera
 	void Update();
-
-	// Change the pitch (up, down) for the free camera
-	void ChangePitch(float degrees);
-	
-	// Change heading (left, right) for the free camera
-	void ChangeHeading(float degrees);
 
 	// Inline Functions
 	inline void SetPosition(const vec3& pos)
 	{
-		this->position = pos;
+		this->m_position = pos;
 	}
 
-	inline void SetDirection(const vec3& dir)
+	inline void SetHeading(const vec3& heading)
 	{
-		this->direction = dir;
+		this->m_heading = heading;
 	}
 
 	inline vec3 GetPositon() const
 	{
-		return this->position;
+		return this->m_position;
 	}
 
-	inline vec3 GetDirection() const
+	inline vec3 GetHeading() const
 	{
-		return this->direction;
+		return this->m_heading;
 	}
 
 	inline mat4 GetViewMatrix() const
 	{
-		return this->viewMatrix;
+		return this->m_viewMatrix;
 	}
 
 	inline mat4 GetProjectionMatrix() const
 	{
-		return this->projectionMatrix;
+		return this->m_projectionMatrix;
 	}
 
 private:
-	vec3 position;
-	vec3 direction;
+	vec3 m_position;
+	vec3 m_heading;
 
-	mat4 viewMatrix;
-	mat4 projectionMatrix;
-	
-	// Functions
+	mat4 m_viewMatrix;
+	mat4 m_projectionMatrix;
 };

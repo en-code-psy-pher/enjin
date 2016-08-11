@@ -16,8 +16,13 @@ public:
 
 	// Functions
 	void CreateTextureUnit(const char* fileName);
-	GLuint GetTextureUnit();
+	
+	inline GLuint GetTextureUnit() const
+	{
+		return this->m_tex;
+	}
 
-	GLuint m_tex;
+private:
+	GLuint	m_tex;
 };
 

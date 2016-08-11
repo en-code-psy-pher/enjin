@@ -154,6 +154,7 @@
     <ClCompile Include="core\game.cpp" />
     <ClCompile Include="core\input.cpp" />
     <ClCompile Include="core\main.cpp" />
+    <ClCompile Include="core\scene.cpp" />
     <ClCompile Include="renderer\directionalLight.cpp" />
     <ClCompile Include="renderer\light.cpp" />
     <ClCompile Include="renderer\mesh.cpp" />

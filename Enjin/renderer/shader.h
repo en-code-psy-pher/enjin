@@ -6,6 +6,7 @@ class Shader
 {
 public:
 	// Constructor
+	Shader();
 	Shader(const GLchar* vertexPath, const GLchar* fragmentPath);
 
 	inline void SetUniform(int location, const GLuint& value);

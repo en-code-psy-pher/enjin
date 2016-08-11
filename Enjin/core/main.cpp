@@ -11,14 +11,11 @@ GLFWwindow* window;
 GLfloat deltaTime = 0.0f;
 GLfloat lastFrame = 0.0f;
 
-// Main Camera
-Camera mainCamera;
-
 // Input
 Input input;
 
 // Game
-//Game game(mainCamera, input);
+Game game;
 
 // Call back functions
 static void KeyboardCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
@@ -90,7 +87,7 @@ int main()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
-	//game.Initialize();
+	game = Game(input);
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -102,13 +99,9 @@ int main()
 		// Check if any events have been activiated (key pressed, mouse moved etc.) and call corresponding response functions
 		glfwPollEvents();
 
-		//game.Update(deltaTime);
+		game.Update(deltaTime);
 
-		// Clear the colorbuffer
-		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		//game.Render();
+		game.Render();
 
 		glfwSwapBuffers(window);
 	}
