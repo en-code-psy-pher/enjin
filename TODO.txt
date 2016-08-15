@@ -4,7 +4,8 @@ TODO:
 - Destructors for every class?
 - Pre-calculate the normal matrix, viz N = mat3(transpose(inverse(model))) * normal;
 - Perform all matrix multiplication before passing it to the GPU.
-	
+- Add copy and move constructors. (l-value, r-value)
+
 	Refactor Mesh/Model class
 - Read ambient, diffuse, specular, and shininess from .obj files
 
