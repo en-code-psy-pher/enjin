@@ -5,6 +5,7 @@ TODO:
 - Pre-calculate the normal matrix, viz N = mat3(transpose(inverse(model))) * normal;
 - Perform all matrix multiplication before passing it to the GPU.
 - Add copy and move constructors. (l-value, r-value)
+- Limit FPS to 60
 
 	Refactor Mesh/Model class
 - Read ambient, diffuse, specular, and shininess from .obj files
@@ -19,8 +20,6 @@ TODO:
 - Get the uniform names
 - Store the uniform and attributes in a hash table, where the name is the key
  -> The value stored will be a pointer to the address of the uniforms value (values can change during the flow of the program, such as the view matrix)
-
---> What do I do with uniform block layouts in my shaders? (Don't include them??)
 
 References
 http://www.opengl-tutorial.org/miscellaneous/math-cheatsheet/ 

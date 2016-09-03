@@ -35,6 +35,10 @@ void Game::Initialize()
 
 	m_shaderSceneLighting = Shader("assets/shaders/sceneLighting.vs", "shaders/sceneLighting.fs");
 	m_shaderLamp = Shader("assets/shaders/lamp.vs", "shaders/lamp.fs");
+
+	// Calculate Normal Matrix for models => Normal = mat3(transpose(inverse(model))) * normal;
+
+	// Set uniforms for shaders
 }
 
 void Game::Update(float deltaTime)
@@ -44,7 +48,7 @@ void Game::Update(float deltaTime)
 void Game::Render()
 {
 	// Clear the colorbuffer
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 

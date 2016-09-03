@@ -19,6 +19,6 @@ void main()
 {
 	gl_Position = mvpMat * vec4(position, 1.0f);
 	vs_out.FragPos = vec3(modelMat * vec4(position, 1.0f));
-	vs_out.Normal = normalMat * normal;
+	vs_out.Normal = vec3(normalMat * vec4(normal, 0.0f));
 	vs_out.TexCoords = texCoords;
 }
