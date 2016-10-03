@@ -1,5 +1,6 @@
 #include "input.h"
 
+// Default Constructor
 Input::Input()
 {
 	m_firstMouse = true;
@@ -8,6 +9,7 @@ Input::Input()
 	m_lastY = GLfloat(SCREEN_HEIGHT) / 2.0f;
 }
 
+// Handle keyboard callbacks
 void Input::HandleKeyboardCallblack(GLFWwindow * window, int key, int scancode, int action, int mode)
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
@@ -22,6 +24,7 @@ void Input::HandleKeyboardCallblack(GLFWwindow * window, int key, int scancode, 
 	}
 }
 
+// Handle mouse callbacks
 void Input::HandleMouseCallblack(double xpos, double ypos)
 {
 	if (m_firstMouse)

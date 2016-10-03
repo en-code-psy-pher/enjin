@@ -9,14 +9,10 @@ Model::Model(GLchar * path)
 	this->LoadModel(path);
 }
 
-Model::~Model()
-{
-}
-
-void Model::Draw(Shader shader)
+void Model::Render(Shader shader)
 {
 	for (GLuint i = 0; i < this->m_meshes.size(); i++)
-		this->m_meshes[i].Draw(shader);
+		this->m_meshes[i].Render(shader);
 }
 
 void Model::LoadModel(string path)

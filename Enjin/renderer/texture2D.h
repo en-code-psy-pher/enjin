@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TEXTURE2D_H
+#define TEXTURE2D_H
 
 #include "config.h"
 
@@ -8,21 +9,26 @@
 class Texture2D
 {
 public:
-	// Constructor
-	Texture2D();
+	// Constructors
 
-	// Destructor
-	~Texture2D();
+	Texture2D();									// Default Constructor
 
-	// Functions
+	// Methods
+
 	void CreateTextureUnit(const char* fileName);
 	
+	// Getters & Setters
+
+	// Get texture
 	inline GLuint GetTextureUnit() const
 	{
 		return this->m_tex;
 	}
 
 private:
-	GLuint	m_tex;
+	// Member Variables
+
+	GLuint		m_tex;
 };
 
+#endif // TEXTURE2D_H

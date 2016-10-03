@@ -1,14 +1,26 @@
-#pragma once
+/*
+	TODO:
+	- Store the uniform names
+	- Store the uniform and attributes in a hash table, where the name is the key
+	-> The value stored will be a pointer to the address of the uniforms value (values can change during the flow of the program, such as the view matrix)
+*/
+
+#ifndef SHADER_H
+#define SHADER_H
 
 #include "config.h"
 
 class Shader
 {
 public:
-	// Constructor
-	Shader();
-	Shader(const GLchar* vertexPath, const GLchar* fragmentPath);
+	// Constructors
 
+	Shader();														// Default Constructor
+	Shader(const GLchar* vertexPath, const GLchar* fragmentPath);	// Parameter Constructor
+
+	// Getters & Setters
+
+	// Set Uniforms
 	inline void SetUniform(int location, const GLuint& value);
 	inline void SetUniform(int location, const GLfloat& value);
 	inline void SetUniform(int location, const vec3& vector);
@@ -17,12 +29,13 @@ public:
 	template<typename T>
 	inline void SetUniform(const string& name, T&& value);
 
-	~Shader();
+	// Methods
 
-	// Functions
-	void Use();
+	void Use();														// Use Shader Program
 
 private:
+	// Member Variables
+
 	GLuint m_program;
 };
 
@@ -59,3 +72,5 @@ void Shader::SetUniform(const string& name, T&& value)
 
 	SetUniform(location, std::forward<T>(value));
 }
+
+#endif // SHADER_H

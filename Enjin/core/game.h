@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GAME_H
+#define GAME_H
 
 #include "config.h"
 
@@ -11,24 +12,27 @@
 #include "model.h"
 #include "texture2D.h"
 
-#define N_POINT_LIGHTS 4
+static const int k_N_POINT_LIGHTS = 4;
 
 class Game
 {
 public:
-	// Constructor
-	Game();
-	Game(const Input& input);
+	// Constructors
 
-	// Destructor
-	~Game();
+	Game();						// Default Constructor
+	Game(const Input& input);	// Parameter Constructor
+	
+	~Game();					// Destructor
 
-	// Inherited Virutal Functions
-	void Initialize();
-	void Update(float deltaTime);
-	void Render();
+	// Methods
+
+	void Initialize();			// Initialize game app
+	void Update();				// Update game app
+	void Render();				// Render game app
 
 private:
+	// Member Variables
+
 	Camera				m_mainCamera;
 
 	Input				m_input;
@@ -44,3 +48,4 @@ private:
 	Shader				m_shaderLamp;
 };
 
+#endif // GAME_H

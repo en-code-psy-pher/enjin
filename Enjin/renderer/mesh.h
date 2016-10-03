@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MESH_H
+#define MESH_H
 
 #include "config.h"
 
@@ -9,6 +10,7 @@
 
 #include "shader.h"
 
+// Structure to hold "vertex" data
 struct Vertex {
 	// Position
 	vec3 position;
@@ -18,6 +20,7 @@ struct Vertex {
 	vec2 texCoords;
 };
 
+// Structure to hold "texture" data
 struct Texture {
 	GLuint id;
 	string type;
@@ -26,22 +29,30 @@ struct Texture {
 
 class Mesh {
 public:
+	// Constructors
+
+	Mesh(vector<Vertex> vertices, vector<GLuint> indices, vector<Texture> textures);
+
+	// Methods
+	
+	void Render(Shader shader);
+
+	// Member Variables
+
 	vector<Vertex> m_vertices;
 	vector<GLuint> m_indices;
 	vector<Texture> m_textures;
 
-	// Constructor
-	Mesh(vector<Vertex> vertices, vector<GLuint> indices, vector<Texture> textures);
-
-	// Destructor
-	~Mesh();
-
-	// Functions
-	void Draw(Shader shader);
-
 private:
-	GLuint m_VAO, m_VBO, m_EBO;
+	// Member Variables
 
-	//  Functions 
+	GLuint			m_VAO;			// Vertex Attribute Object
+	GLuint			m_VBO;			// Vertex Buffer Object
+	GLuint			m_EBO;			// Element Buffer Object
+
+	//  Methods
+
 	void SetupMesh();
 };
+
+#endif // MESH_H

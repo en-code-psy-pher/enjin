@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CONFIG_H
+#define CONFIG_H
 
 // GLEW
 #define GLEW_STATIC
@@ -8,10 +9,10 @@
 #include "glfw3.h"
 
 #include <iostream>
+#include <cassert>
 #include <string>
 #include <fstream>
 #include <sstream>
-#include <iostream>
 #include <vector>
 #include <map>
 
@@ -49,3 +50,5 @@ using std::endl;
 using std::string;
 using std::vector;
 using std::map;
+
+#endif // CONFIG_H

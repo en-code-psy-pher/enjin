@@ -10,11 +10,6 @@ Mesh::Mesh(vector<Vertex> vertices, vector<GLuint> indices, vector<Texture> text
 	this->SetupMesh();
 }
 
-// Destroy mesh data
-Mesh::~Mesh()
-{
-}
-
 // Initializes all the buffer objects/arrays
 void Mesh::SetupMesh()
 {
@@ -47,7 +42,7 @@ void Mesh::SetupMesh()
 }
 
 // Render the mesh
-void Mesh::Draw(Shader shader)
+void Mesh::Render(Shader shader)
 {
 	// Bind appropriate textures
 	GLuint diffuseNr = 1;

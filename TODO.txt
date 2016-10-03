@@ -1,25 +1,7 @@
 TODO:
-	Refactor (General)
-- Use for range wherever possible.
-- Destructors for every class?
-- Pre-calculate the normal matrix, viz N = mat3(transpose(inverse(model))) * normal;
-- Perform all matrix multiplication before passing it to the GPU.
-- Add copy and move constructors. (l-value, r-value)
-- Limit FPS to 60
-
-	Refactor Mesh/Model class
-- Read ambient, diffuse, specular, and shininess from .obj files
-
-	Refactor Camera class
-- Use quaternions https://github.com/opengl-tutorials/ogl/blob/master/common/quaternion_utils.cpp, 
-- Change the way the camera is initialized, and updated.
-
-	Refactor Shader class
-- https://www.reddit.com/r/gamedev/comments/1smezy/how_to_architect_glsl_shaders_in_a_game_engine/
-- Read the shader
-- Get the uniform names
-- Store the uniform and attributes in a hash table, where the name is the key
- -> The value stored will be a pointer to the address of the uniforms value (values can change during the flow of the program, such as the view matrix)
+- Refactor Mesh/Model class; read ambient, diffuse, specular, and shininess from .obj files.
+- Refactor Shader class, https://www.reddit.com/r/gamedev/comments/1smezy/how_to_architect_glsl_shaders_in_a_game_engine/
+- Refactor Texture2D class.
 
 References
 http://www.opengl-tutorial.org/miscellaneous/math-cheatsheet/ 

@@ -1,6 +1,7 @@
-#include <time.h>
-
 #include "config.h"
+
+#undef UNICODE
+#include <windows.h>
 
 #include "input.h"
 #include "game.h"
@@ -29,11 +30,6 @@ void MouseCallback(GLFWwindow* window, double xpos, double ypos)
 static void ErrorCallback(int error, const char* description)
 {
 	cout << description << endl;
-}
-
-double ClockToMilliseconds(clock_t ticks) 
-{
-	return (ticks / (double)CLOCKS_PER_SEC) / 1000.0;
 }
 
 int main()
@@ -91,38 +87,31 @@ int main()
 	glDepthFunc(GL_LESS);
 
 	game = Game(input);
-	
-	time_t beginTime; //time at the start of the loop
-	time_t currentTime; //time when checking for a one-second interval
-	
-	double frames = 0; //number of times passed through the loop
 
-	time(&beginTime); //sets begin_time
+	DWORD lastTime = timeGetTime();
 
 	while (!glfwWindowShouldClose(window))
 	{
-		frames++;
-		
-		time(&currentTime);
+		// Pause kSleepTimeMs milliseconds
 
-		float deltaTime = currentTime - beginTime;
+		const DWORD kSleepTimeMs = 20;
+		const DWORD currentTime = timeGetTime();
+		const DWORD timeSinceLast = currentTime - lastTime;
+
+		if (timeSinceLast < kSleepTimeMs)
+		{
+			Sleep(kSleepTimeMs - timeSinceLast);
+		}
+
+		lastTime = currentTime;
 
 		game.Render();
 
 		glfwPollEvents();
 
-		game.Update(deltaTime);
+		game.Update();
 		
 		glfwSwapBuffers(window);
-
-		if (difftime(currentTime, beginTime) >= 1.0)
-		{
-			cout << "FPS: " << frames << endl;
-
-			frames = 0;
-			
-			time(&beginTime); 
-		}
 	}
 
 	// Cleanup

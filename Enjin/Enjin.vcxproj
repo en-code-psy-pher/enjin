@@ -97,7 +97,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>No</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3dll.lib;SOIL.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3dll.lib;SOIL.lib;assimp.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -154,7 +154,6 @@
     <ClCompile Include="core\game.cpp" />
     <ClCompile Include="core\input.cpp" />
     <ClCompile Include="core\main.cpp" />
-    <ClCompile Include="core\scene.cpp" />
     <ClCompile Include="renderer\directionalLight.cpp" />
     <ClCompile Include="renderer\light.cpp" />
     <ClCompile Include="renderer\mesh.cpp" />
@@ -169,7 +168,6 @@
     <ClInclude Include="core\config.h" />
     <ClInclude Include="core\game.h" />
     <ClInclude Include="core\input.h" />
-    <ClInclude Include="core\scene.h" />
     <ClInclude Include="renderer\directionalLight.h" />
     <ClInclude Include="renderer\light.h" />
     <ClInclude Include="renderer\mesh.h" />

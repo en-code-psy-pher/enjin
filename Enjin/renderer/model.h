@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MODEL_H
+#define MODEL_H
 
 // SOIL Lib
 #include "SOIL.h"
@@ -8,26 +9,29 @@
 class Model
 {
 public:
-	// Constructor
-	Model();
-	Model(GLchar* path);
+	// Constructors
 
-	// Destructor
-	~Model();
+	Model();						// Default Constructor
+	Model(GLchar* path);			// Parameter Constructor
 
-	// Functions
-	void Draw(Shader shader);
+	// Methods
+
+	void Render(Shader shader);		// Render the model
 
 private:
-	//  Functions
+	//  Methods
+
 	void LoadModel(const string path);
 	void ProcessNode(const aiNode* node, const aiScene* scene);
 	Mesh ProcessMesh(const aiMesh* mesh, const aiScene* scene);
 	GLint TextureFromFile(const char* path, string directory);
 	vector<Texture> LoadMaterialTextures(const aiMaterial* mat, const aiTextureType type, const string typeName);
 
-	vector<Mesh> m_meshes;
-	string m_directory;
-	vector<Texture> m_textures_loaded;	// Stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
+	// Member Variables
+
+	vector<Mesh>		m_meshes;
+	string				m_directory;
+	vector<Texture>		m_textures_loaded;		// Stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
 };
 
+#endif // MODEL_H

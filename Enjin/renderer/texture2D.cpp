@@ -5,10 +5,6 @@ Texture2D::Texture2D()
 {
 }
 
-Texture2D::~Texture2D()
-{
-}
-
 void Texture2D::CreateTextureUnit(const char* fileName)
 {
 	uchar* image;
