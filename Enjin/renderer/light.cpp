@@ -52,3 +52,7 @@ Light & Light::operator=(const Light && other)
 
 	return *this;
 }
+
+Light::~Light()
+{
+}

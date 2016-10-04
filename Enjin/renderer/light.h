@@ -16,6 +16,8 @@ public:
 	Light& operator=(const Light& other);				// Copy Assignment (lvalue)
 	Light& operator=(const Light&& other);				// Move Assignment (rvalue)
 
+	~Light();											// Virtual Destructor
+
 	// Getters & Setters
 
 	// Set Light Ambient Color
