@@ -9,6 +9,7 @@ public:
 	// Constructors
 
 	Input();															// Default Constructor
+	Input(const GLfloat width, const GLfloat height);					// Parameter Constructor
 
 	// Methods
 

@@ -73,6 +73,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\Users\andre\Documents\GitProjects\Enjin\Enjin\physics;C:\Users\andre\Documents\GitProjects\Enjin\Enjin\renderer;C:\Users\andre\Documents\GitProjects\Enjin\Enjin\core;C:\Users\andre\Documents\GitProjects\Enjin\includes;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\andre\Documents\GitProjects\Enjin\libs;$(LibraryPath)</LibraryPath>
+    <GenerateManifest>true</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -100,6 +101,8 @@
       <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3dll.lib;SOIL.lib;assimp.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AllowIsolation>true</AllowIsolation>
+      <IgnoreEmbeddedIDL>false</IgnoreEmbeddedIDL>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

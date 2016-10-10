@@ -23,10 +23,6 @@
 #include "glm/gtx/quaternion.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
-// Define Constants
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
-
 // Debug Macros
 #define DEBUG(x) do { std::cerr << x; } while (0)
 

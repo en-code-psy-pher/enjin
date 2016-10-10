@@ -3,10 +3,15 @@
 // Default Constructor
 Input::Input()
 {
+}
+
+// Parameter Constructor
+Input::Input(const GLfloat width, GLfloat height)
+{
 	m_firstMouse = true;
 
-	m_lastX = GLfloat(SCREEN_WIDTH) / 2.0f;
-	m_lastY = GLfloat(SCREEN_HEIGHT) / 2.0f;
+	m_lastX = width * 0.5f;
+	m_lastY = height * 0.5f;
 }
 
 // Handle keyboard callbacks

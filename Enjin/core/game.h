@@ -19,19 +19,21 @@ class Game
 public:
 	// Constructors
 
-	Game();						// Default Constructor
-	Game(const Input& input);	// Parameter Constructor
+	Game();																	// Default Constructor
+	Game(const Input& input, const GLfloat width, const GLfloat height);	// Parameter Constructor
 	
-	~Game();					// Destructor
+	~Game();																// Destructor
 
 	// Methods
 
-	void Initialize();			// Initialize game app
-	void Update();				// Update game app
-	void Render();				// Render game app
+	void Initialize();														// Initialize game app
+	void Update();															// Update game app
+	void Render();															// Render game app
 
 private:
 	// Member Variables
+	GLfloat				m_width;
+	GLfloat				m_height;
 
 	Camera				m_mainCamera;
 
@@ -46,6 +48,19 @@ private:
 
 	Shader				m_shaderSceneLighting;
 	Shader				m_shaderLamp;
+	
+	
+	/* Test Variables */
+	GLuint				m_lightVAO;
+	GLuint				m_lightVBO;
+
+	Shader				m_testShader;
+
+	mat4				m_model;
+	mat4				m_normal;
+	mat4				m_projection;
+	mat4				m_view;
+	mat4				m_mvp;
 };
 
 #endif // GAME_H

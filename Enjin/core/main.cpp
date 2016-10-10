@@ -7,6 +7,9 @@
 #include "game.h"
 #include "camera.h"
 
+int width;
+int height;
+
 // Window
 GLFWwindow* window;
 
@@ -52,8 +55,11 @@ int main()
 	glfwWindowHint(GLFW_DEPTH_BITS, 8);
 	glfwWindowHint(GLFW_DOUBLEBUFFER, true);
 
+	width = 800;
+	height = 600;
+
 	// Create and set window
-	window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Enjin 0.0", NULL, NULL);
+	window = glfwCreateWindow(width, height, "Enjin 0.0", NULL, NULL);
 
 	if (!window)
 	{
@@ -80,13 +86,14 @@ int main()
 	}
 
 	// Define the viewport dimensions
-	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+	glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 
 	// OpenGL options
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
-	game = Game(input);
+	input = Input((GLfloat)width, (GLfloat)height);
+	game = Game(input, (GLfloat)width, (GLfloat)height);
 
 	DWORD lastTime = timeGetTime();
 
@@ -115,7 +122,6 @@ int main()
 	}
 
 	// Cleanup
-
 	glfwDestroyWindow(window);
 
 	glfwTerminate();
