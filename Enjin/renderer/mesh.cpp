@@ -48,6 +48,7 @@ void Mesh::Render(Shader shader)
 	GLuint diffuseNr = 1;
 	GLuint specularNr = 1;
 	GLuint reflectionNr = 1;
+	int location;
 
 	for (GLuint i = 0; i < this->m_textures.size(); i++)
 	{
@@ -67,13 +68,15 @@ void Mesh::Render(Shader shader)
 		number = ss.str();
 
 		// Setting the sampler to the correct texture unit
-		shader.SetUniform((name + number).c_str(), i);
+		location = glGetUniformLocation(shader.GetProgram(), (name + number).c_str());
+		glUniform1i(location, i);
 
 		// Unbind the texture
 		glBindTexture(GL_TEXTURE_2D, this->m_textures[i].id);
 	}
 
-	shader.SetUniform("material.shininess", 16.0f);
+	location = glGetUniformLocation(shader.GetProgram(), "material.shininess");
+	glUniform1f(location, 16.0f);
 
 	// Draw mesh
 	glBindVertexArray(this->m_VAO);

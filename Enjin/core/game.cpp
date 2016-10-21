@@ -6,8 +6,8 @@ Game::Game()
 }
 
 // Parameter Constructor
-Game::Game(const Input& input, const GLfloat width, const GLfloat height)
-	: m_input(input), m_width(width), m_height(height)
+Game::Game(const GLfloat width, const GLfloat height)
+	: m_width(width), m_height(height)
 
 {
 	Initialize();
@@ -21,7 +21,7 @@ Game::~Game()
 // Intialize the game
 void Game::Initialize()
 {
-	//m_mainCamera = Camera();
+	m_mainCamera = Camera();
 
 	//m_lightDirectional = DirectionalLight(vec3(-0.2f, -1.0f, -0.3f), vec3(0.05f), vec3(0.4f), vec3(1.0f));
 
@@ -107,13 +107,13 @@ void Game::Initialize()
 		glEnableVertexAttribArray(2);
 	glBindVertexArray(0);
 
-	m_projection = glm::perspective(45.0f, m_width / m_height, 0.01f, 100.0f);
-	m_view = glm::lookAt(vec3(0.0f, 0.0f, -10.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f));
+	m_projection = m_mainCamera.GetProjectionMatrix();
 }
 
 // Update the game
 void Game::Update()
 {
+	m_view = m_mainCamera.GetViewMatrix();
 }
 
 // Render the game
@@ -131,6 +131,7 @@ void Game::Render()
 
 		// Translate to origin
 		m_model = glm::translate(m_model, vec3(0.0f, 0.0f, 0.0f));
+		m_model = glm::rotate(m_model, 45.0f, vec3(1.0f, 0.0f, 0.0f));
 		int modelLoc = glGetUniformLocation(m_testShader.GetProgram(), "_modelMat");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(m_model));
 		
@@ -148,4 +149,19 @@ void Game::Render()
 	glBindVertexArray(0);
 
 	glUseProgram(0);
+}
+
+// Handle keyboard callbacks
+void Game::HandleKeyboardCallblack(GLFWwindow * window, int key, int scancode, int action, int mode)
+{
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, GL_TRUE);
+
+	if (key >= 0 && key < 1024)
+	{
+		if (action == GLFW_PRESS)
+			m_keys[key] = true;
+		else if (action == GLFW_RELEASE)
+			m_keys[key] = false;
+	}
 }

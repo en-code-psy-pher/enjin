@@ -3,7 +3,6 @@
 
 #include "config.h"
 
-#include "input.h"
 #include "camera.h"
 #include "shader.h"
 #include "pointLight.h"
@@ -20,24 +19,26 @@ public:
 	// Constructors
 
 	Game();																	// Default Constructor
-	Game(const Input& input, const GLfloat width, const GLfloat height);	// Parameter Constructor
+	Game(const GLfloat width, const GLfloat height);						// Parameter Constructor
 	
 	~Game();																// Destructor
 
 	// Methods
+	void HandleKeyboardCallblack(GLFWwindow * window, int key,				// Handle keyboard callbacks
+								 int scancode, int action, int mode);
 
 	void Initialize();														// Initialize game app
 	void Update();															// Update game app
 	void Render();															// Render game app
 
 private:
-	// Member Variables
+	// Member 
+	bool				m_keys[1024];
+
 	GLfloat				m_width;
 	GLfloat				m_height;
 
 	Camera				m_mainCamera;
-
-	Input				m_input;
 
 	DirectionalLight	m_lightDirectional;
 	vector<PointLight>	m_lightPoints;

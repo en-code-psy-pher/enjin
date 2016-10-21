@@ -155,7 +155,6 @@
   <ItemGroup>
     <ClCompile Include="core\camera.cpp" />
     <ClCompile Include="core\game.cpp" />
-    <ClCompile Include="core\input.cpp" />
     <ClCompile Include="core\main.cpp" />
     <ClCompile Include="renderer\directionalLight.cpp" />
     <ClCompile Include="renderer\light.cpp" />
@@ -170,7 +169,6 @@
     <ClInclude Include="core\camera.h" />
     <ClInclude Include="core\config.h" />
     <ClInclude Include="core\game.h" />
-    <ClInclude Include="core\input.h" />
     <ClInclude Include="renderer\directionalLight.h" />
     <ClInclude Include="renderer\light.h" />
     <ClInclude Include="renderer\mesh.h" />

@@ -3,33 +3,25 @@
 #undef UNICODE
 #include <windows.h>
 
-#include "input.h"
 #include "game.h"
 #include "camera.h"
 
-int width;
-int height;
+// Window Dimensions
+GLfloat				width;
+GLfloat				height;
 
 // Window
-GLFWwindow* window;
-
-// Input
-Input input;
+GLFWwindow *		window;
 
 // Game
-Game game;
+Game				game;
 
-// Call back functions
-static void KeyboardCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
+static void KeyboardCallblack(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
-	input.HandleKeyboardCallblack(window, key, scancode, action, mode);
+	game.HandleKeyboardCallblack(window, key, scancode, action, mode);
 }
 
-void MouseCallback(GLFWwindow* window, double xpos, double ypos)
-{
-	input.HandleMouseCallblack(xpos, ypos);
-}
-
+// GLFW Error call back
 static void ErrorCallback(int error, const char* description)
 {
 	cout << description << endl;
@@ -55,8 +47,8 @@ int main()
 	glfwWindowHint(GLFW_DEPTH_BITS, 8);
 	glfwWindowHint(GLFW_DOUBLEBUFFER, true);
 
-	width = 800;
-	height = 600;
+	width = 800.0f;
+	height = 600.0f;
 
 	// Create and set window
 	window = glfwCreateWindow(width, height, "Enjin 0.0", NULL, NULL);
@@ -71,8 +63,7 @@ int main()
 	glfwMakeContextCurrent(window);
 
 	// Set Callbacks
-	glfwSetKeyCallback(window, KeyboardCallback);
-	glfwSetCursorPosCallback(window, MouseCallback);
+	glfwSetKeyCallback(window, KeyboardCallblack);
 
 	// Hide the cursor
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -92,8 +83,7 @@ int main()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
-	input = Input((GLfloat)width, (GLfloat)height);
-	game = Game(input, (GLfloat)width, (GLfloat)height);
+	game = Game((GLfloat)width, (GLfloat)height);
 
 	DWORD lastTime = timeGetTime();
 

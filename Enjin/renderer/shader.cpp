@@ -83,58 +83,6 @@ Shader::Shader(const GLchar* vertexPath, const GLchar* fragmentPath)
 	glDeleteShader(fragment);
 }
 
-void Shader::SetUniform(const string& name, const GLuint& value)
-{
-	int location = glGetUniformLocation(this->m_program, name.c_str());
-
-	if (location == -1)
-	{
-		string error = "Program could not find location of uniform " + name;
-		throw std::runtime_error(error);
-	}
-
-	glUniform1i(location, value);
-}
-
-void Shader::SetUniform(const string& name, const GLfloat& value)
-{
-	int location = glGetUniformLocation(this->m_program, name.c_str());
-
-	if (location == -1)
-	{
-		string error = "Program could not find location of uniform " + name;
-		throw std::runtime_error(error);
-	}
-
-	glUniform1f(location, value);
-}
-
-void Shader::SetUniform(const string& name, const vec3& vector)
-{
-	int location = glGetUniformLocation(this->m_program, name.c_str());
-
-	if (location == -1)
-	{
-		string error = "Program could not find location of uniform " + name;
-		throw std::runtime_error(error);
-	}
-
-	glUniform3f(location, vector.x, vector.y, vector.z);
-}
-
-void Shader::SetUniform(const string& name, const mat4& value)
-{
-	int location = glGetUniformLocation(this->m_program, name.c_str());
-
-	if (location == -1)
-	{
-		string error = "Program could not find location of uniform " + name;
-//		throw std::runtime_error(error);
-	}
-
-	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
-}
-
 void Shader::Use()
 {
 	glUseProgram(this->m_program);

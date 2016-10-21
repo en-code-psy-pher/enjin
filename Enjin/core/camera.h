@@ -15,16 +15,16 @@ class Camera
 public:
 	// Constructors
 
-	Camera();										// Constructor
-	Camera(vec3 position, vec3 up, vec3 heading);	// Parameter Constructor
-	Camera(const Camera& other);					// Copy Constructor (lvalue)
-	Camera(const Camera&& other);					// Move Constructor (lvalue)
+	Camera();																		// Constructor
+	Camera(vec3 position, vec3 up, vec3 heading, GLfloat width, GLfloat height);	// Parameter Constructor
+	Camera(const Camera& other);													// Copy Constructor (lvalue)
+	Camera(const Camera&& other);													// Move Constructor (lvalue)
 
-	Camera& operator=(const Camera& other);			// Copy Assignment (lvalue)
-	Camera& operator=(const Camera&& other);		// Move Assignment (rvalue)
+	Camera& operator=(const Camera& other);											// Copy Assignment (lvalue)
+	Camera& operator=(const Camera&& other);										// Move Assignment (rvalue)
 
 	// Methods
-	
+	void Move();									// Move Camera
 	void Update();									// Update Camera
 
 	// Getters & Setters
@@ -67,6 +67,8 @@ public:
 
 private:
 	// Member Variables
+	GLfloat		m_width;
+	GLfloat		m_height;
 
 	vec3		m_position;					// Camera Position
 	vec3		m_heading;					// Camera Heading

@@ -21,9 +21,6 @@
     <ClCompile Include="core\game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="core\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -57,9 +54,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="core\input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="renderer\directionalLight.h">

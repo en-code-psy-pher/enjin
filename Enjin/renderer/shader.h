@@ -19,11 +19,6 @@ public:
 	Shader(const GLchar* vertexPath, const GLchar* fragmentPath);	// Parameter Constructor
 
 	// Methods
-
-	void SetUniform(const string& name, const GLuint& value);		// Set Uniforms, int val
-	void SetUniform(const string& name, const GLfloat& value);		// Set Uniforms, float val
-	void SetUniform(const string& name, const vec3& vector);		// Set Uniforms, vec3 val
-	void SetUniform(const string& name, const mat4& value);			// Set Uniforms, mat4 val
 	
 	void Use();														// Use Shader Program
 
