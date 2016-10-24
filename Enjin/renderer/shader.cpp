@@ -156,7 +156,7 @@ Shader::Shader(const GLchar* vertexPath, const GLchar* fragmentPath, const GLcha
 	}
 
 	// Geometry Shader
-	geometry = glCreateShader(GL_FRAGMENT_SHADER);
+	geometry = glCreateShader(GL_GEOMETRY_SHADER);
 	glShaderSource(geometry, 1, &gShaderCode, NULL);
 	glCompileShader(geometry);
 	glGetShaderiv(geometry, GL_COMPILE_STATUS, &success);

@@ -35,10 +35,10 @@ struct SpotLight
 	float outerCutOff;
 };
 
-in VS_OUT {
-	vec3 Normal;
-	vec3 FragPos;
-	vec2 TexCoords;
+in GS_OUT {
+    vec2 texCoords;
+    vec3 fragPos;
+    vec3 normal;
 } fs_in;
 
 uniform vec3 eyePos;
@@ -55,17 +55,17 @@ vec3 CalculateSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir
 
 void main()
 {
-	vec3 N = normalize(fs_in.Normal);
-	vec3 V = normalize(eyePos - fs_in.FragPos);
+	vec3 N = normalize(fs_in.normal);
+	vec3 V = normalize(eyePos - fs_in.fragPos);
 	
 	vec3 result;
 	
 	result = CalculateDirectionalLight(directionalLight, N, V);
 	
 	for(int i = 0; i < N_POINT_LIGHTS; i++)
-		result += CalculatePointLight(pointLights[i], N, fs_in.FragPos, V);
+		result += CalculatePointLight(pointLights[i], N, fs_in.fragPos, V);
 		
-	result += CalculateSpotLight(spotLight, N, fs_in.FragPos, V);
+	result += CalculateSpotLight(spotLight, N, fs_in.fragPos, V);
 	
 	color = vec4(result, 1.0);
 }

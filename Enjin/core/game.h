@@ -46,14 +46,10 @@ private:
 
 	Model				m_teapot;
 
-	Shader				m_shaderSceneLighting;
-	Shader				m_shaderLamp;	
-	
-	/* Test Variables */
-	GLuint				m_lightVAO;
-	GLuint				m_lightVBO;
+	Shader				m_teapotShader;
 
-	Shader				m_testShader;
+	float				m_explodeDelta;
+	float				m_angle;
 
 	mat4				m_model;
 	mat4				m_normal;
