@@ -9,15 +9,14 @@ PointLight::PointLight()
 
 // Parameter Constructor
 PointLight::PointLight(vec3 position, float constant, float linear, float quadratic, vec3 ambient, vec3 diffuse, vec3 specular) 
-	:	m_position(position), m_constant(constant), m_linear(linear), m_quadratic(quadratic)
+	: Light(ambient, diffuse, specular), m_position(position), m_constant(constant), m_linear(linear), m_quadratic(quadratic)
 {
-	Light(ambient, diffuse, specular);
 }
 
 // Copy Constructor (lvalue)
 PointLight::PointLight(const PointLight & other)
+	: Light(other.m_ambient, other.m_diffuse, other.m_specular)
 {
-	Light(other.m_ambient, other.m_diffuse, other.m_specular);
 	this->m_position = other.m_position;
 	this->m_constant = other.m_constant;
 	this->m_linear = other.m_linear;
@@ -26,8 +25,8 @@ PointLight::PointLight(const PointLight & other)
 
 // Move Constructor (rvalue)
 PointLight::PointLight(const PointLight && other)
+	: Light(other.m_ambient, other.m_diffuse, other.m_specular)
 {
-	Light(other.m_ambient, other.m_diffuse, other.m_specular);
 	this->m_position = other.m_position;
 	this->m_constant = other.m_constant;
 	this->m_linear = other.m_linear;

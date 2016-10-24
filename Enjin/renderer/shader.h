@@ -17,6 +17,7 @@ public:
 
 	Shader();														// Default Constructor
 	Shader(const GLchar* vertexPath, const GLchar* fragmentPath);	// Parameter Constructor
+	Shader(const GLchar* vertexPath, const GLchar* fragmentPath, const GLchar* geometryPath);	// Parameter Constructor
 
 	// Methods
 	

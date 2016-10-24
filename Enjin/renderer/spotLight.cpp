@@ -12,16 +12,15 @@ SpotLight::SpotLight()
 
 // Parameter Constructor
 SpotLight::SpotLight(vec3 position, vec3 direction, float constant, float linear, float quadratic, vec3 ambient, vec3 diffuse, vec3 specular, float cutOff, float outerCutOff)
-	:	m_position(position), m_direction(direction), m_constant(constant), m_linear(linear), m_quadratic(quadratic), 
+	: Light(ambient, diffuse, specular), m_position(position), m_direction(direction), m_constant(constant), m_linear(linear), m_quadratic(quadratic),
 		m_cutOff(cutOff), m_outerCutOff(outerCutOff)
 {
-	Light(ambient, diffuse, specular);
 }
 
 // Copy Constructor (lvalue)
 SpotLight::SpotLight(const SpotLight & other)
+	: Light(other.m_ambient, other.m_diffuse, other.m_specular)
 {
-	Light(other.m_ambient, other.m_diffuse, other.m_specular);
 	this->m_position = other.m_position;
 	this->m_direction = other.m_direction;
 	this->m_constant = other.m_constant;
@@ -33,8 +32,8 @@ SpotLight::SpotLight(const SpotLight & other)
 
 // Move Constructor (rvalue)
 SpotLight::SpotLight(const SpotLight && other)
+	: Light(other.m_ambient, other.m_diffuse, other.m_specular)
 {
-	Light(other.m_ambient, other.m_diffuse, other.m_specular);
 	this->m_position = other.m_position;
 	this->m_direction = other.m_direction;
 	this->m_constant = other.m_constant;

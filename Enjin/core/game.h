@@ -19,7 +19,7 @@ public:
 	// Constructors
 
 	Game();																	// Default Constructor
-	Game(const GLfloat width, const GLfloat height);						// Parameter Constructor
+	Game(const GLfloat& width, const GLfloat& height);						// Parameter Constructor
 	
 	~Game();																// Destructor
 
@@ -44,12 +44,10 @@ private:
 	vector<PointLight>	m_lightPoints;
 	SpotLight			m_lightSpot;
 
-	Model				m_terrain;
-	Model				m_nanosuit;
+	Model				m_teapot;
 
 	Shader				m_shaderSceneLighting;
-	Shader				m_shaderLamp;
-	
+	Shader				m_shaderLamp;	
 	
 	/* Test Variables */
 	GLuint				m_lightVAO;
@@ -62,6 +60,8 @@ private:
 	mat4				m_projection;
 	mat4				m_view;
 	mat4				m_mvp;
+
+	void RenderTeapot();
 };
 
 #endif // GAME_H

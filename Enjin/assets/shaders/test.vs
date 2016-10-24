@@ -8,18 +8,20 @@ uniform mat4 _mvpMat;
 uniform mat4 _modelMat;
 uniform mat4 _normalMat;
 
-out vec2 texCoord;
-out vec3 fragPos;
-out vec3 normal;
+out VS_OUT {
+	vec3 Normal;
+	vec3 FragPos;
+	vec2 TexCoords;
+} vs_out;
 
 void main()
 {
 	gl_Position = _mvpMat * vec4(_position, 1.0);
 	
-	fragPos = vec3(_modelMat * vec4(_position, 1.0));
+	vs_out.FragPos = vec3(_modelMat * vec4(_position, 1.0));
 	
-	normal = vec3(_normalMat * vec4(_nomral, 1.0));
+	vs_out.Normal = vec3(_normalMat * vec4(_nomral, 1.0));
 	
 	// Flip y coordinates for OpenGl
-	texCoord = vec2(_texCoord.x, 1.0 - _texCoord.y);
+	vs_out.TexCoords = vec2(_texCoord.x, 1.0 - _texCoord.y);
 }

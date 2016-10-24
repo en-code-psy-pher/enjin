@@ -8,6 +8,7 @@ class Camera
 public:
 	// Constructors
 	Camera();
+	Camera(const GLfloat& width, const GLfloat& height);
 	Camera(const Camera& other);					// Copy Constructor (lvalue)
 	Camera(const Camera&& other);					// Move Constructor (lvalue)
 
@@ -24,10 +25,23 @@ public:
 
 
 	// Getters & Setters
+
 	// Get Camera Position
 	inline vec3 GetPositon() const
 	{
 		return this->m_position;
+	}
+
+	// Get Camera Direction
+	inline vec3 GetDirection() const
+	{
+		return this->m_fowardDirection;
+	}
+
+	// Get Camera Right Vector
+	inline vec3 GetRight() const
+	{
+		return glm::normalize(glm::cross(m_fowardDirection, m_up));
 	}
 
 	// Get View Matrix
@@ -44,11 +58,8 @@ public:
 
 
 	// Member Variables
-	GLfloat		m_width;
-	GLfloat		m_height;
 
 	vec3		m_position;						// Camera Position
-	vec3		m_direction;					// Camera Direction
 	vec3		m_fowardDirection;				// Camera Foward Direction
 	vec3		m_right;						// Camera Right Vector
 	vec3		m_up;							// Camera Up Vector

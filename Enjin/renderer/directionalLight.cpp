@@ -9,22 +9,21 @@ DirectionalLight::DirectionalLight()
 
 // Parameter Constructor
 DirectionalLight::DirectionalLight(vec3 direction, vec3 ambient, vec3 diffuse, vec3 specular)
-	: m_direction(direction)
+	: Light(ambient, diffuse, specular), m_direction(direction)
 {
-	Light(ambient, diffuse, specular);
 }
 
 // Copy Constructor (lvalue)
 DirectionalLight::DirectionalLight(const DirectionalLight & other)
+	: Light(other.m_ambient, other.m_diffuse, other.m_specular)
 {
-	Light(other.m_ambient, other.m_diffuse, other.m_specular);
 	this->m_direction = other.m_direction;
 }
 
 // Move Constructor (rvalue)
 DirectionalLight::DirectionalLight(const DirectionalLight && other)
+	: Light(other.m_ambient, other.m_diffuse, other.m_specular)
 {
-	Light(other.m_ambient, other.m_diffuse, other.m_specular);
 	this->m_direction = other.m_direction;
 }
 
