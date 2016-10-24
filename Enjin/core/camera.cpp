@@ -2,30 +2,32 @@
 
 // Default Constructor
 Camera::Camera()
-	: m_position(vec3(0.0f, 0.0f, 5.0f)), m_up(vec3(0.0f, 1.0f, 0.0f)), m_heading(vec3(0.0f, 0.0f, 0.0f))
 {
 	m_width = 800.0f;
 	m_height = 600.0f;
 
-	m_viewMatrix = glm::lookAt(this->m_position, this->m_heading, this->m_up);
-	m_projectionMatrix = glm::perspective(45.0f, m_width / m_height, 0.01f, 100.0f);
+	m_position = vec3(0.0f, 0.0f, 3.0f);
+	m_up = vec3(0.0f, 1.0f, 0.0f);
+	m_fowardDirection = vec3(0.0f, 0.0f, -1.0f);
+
+	m_viewMatrix = glm::lookAt(this->m_position, this->m_position + m_fowardDirection, this->m_up);
+	
+	cout << "HIT" << endl;
+
+	m_direction = vec3(m_viewMatrix[2][0], m_viewMatrix[2][1], m_viewMatrix[2][2]);
+	for (int i = 0; i < m_direction.length(); ++i)
+		cout << m_direction[i] << endl;
+
+	m_projectionMatrix = glm::perspective(45.0f, m_width / m_height, 0.1f, 1000.0f);
 }
 
-// Parameter Constructor
-Camera::Camera(vec3 position, vec3 up, vec3 heading, GLfloat width, GLfloat height)
-	: m_position(position), m_up(up), m_heading(heading), m_width(width), m_height(height)
-{
-	m_viewMatrix = glm::lookAt(this->m_position, this->m_heading, this->m_up);
-	m_projectionMatrix = glm::perspective(45.0f, m_width / m_height, 0.01f, 100.0f);
-}
+// TODO - COMPLETE CONSTRUCTORS
 
 // Copy Constructor (lvalue)
 Camera::Camera(const Camera & other)
 {
 	this->m_position = other.m_position;
-	this->m_heading = other.m_heading;
-	this->m_up = other.m_up;
-
+	
 	this->m_projectionMatrix = other.m_projectionMatrix;
 	this->m_viewMatrix = other.m_viewMatrix;
 }
@@ -34,7 +36,6 @@ Camera::Camera(const Camera & other)
 Camera::Camera(const Camera && other)
 {
 	this->m_position = other.m_position;
-	this->m_heading = other.m_heading;
 	this->m_up = other.m_up;
 
 	this->m_projectionMatrix = other.m_projectionMatrix;
@@ -49,7 +50,6 @@ Camera & Camera::operator=(const Camera & other)
 		return *this;
 
 	this->m_position = other.m_position;
-	this->m_heading = other.m_heading;
 	this->m_up = other.m_up;
 
 	this->m_projectionMatrix = other.m_projectionMatrix;
@@ -64,23 +64,16 @@ Camera & Camera::operator=(const Camera && other)
 	assert(this != &other);
 
 	this->m_position = other.m_position;
-	this->m_heading = other.m_heading;
 	this->m_up = other.m_up;
-
+	
 	this->m_projectionMatrix = other.m_projectionMatrix;
 	this->m_viewMatrix = other.m_viewMatrix;
 
 	return *this;
 }
 
-void Camera::Move()
-{
-	vec3 amtMove = this->m_heading  * CAMERA_SPEED;
-	this->m_position += amtMove;
-}
-
 // Update Camera every tick
 void Camera::Update()
 {
-	m_viewMatrix = glm::lookAt(this->m_position, this->m_heading, this->m_up);
+	m_viewMatrix = glm::lookAt(this->m_position, this->m_position + m_fowardDirection, this->m_up);
 }

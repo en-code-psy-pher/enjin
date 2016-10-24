@@ -1,56 +1,33 @@
-/* 
-	TODO: 
-	- Camera class should use quaternions
-*/
-
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "config.h"
-
-#define CAMERA_SPEED 10.0f
+#include "../core/config.h"
 
 class Camera
 {
 public:
 	// Constructors
+	Camera();
+	Camera(const Camera& other);					// Copy Constructor (lvalue)
+	Camera(const Camera&& other);					// Move Constructor (lvalue)
 
-	Camera();																		// Constructor
-	Camera(vec3 position, vec3 up, vec3 heading, GLfloat width, GLfloat height);	// Parameter Constructor
-	Camera(const Camera& other);													// Copy Constructor (lvalue)
-	Camera(const Camera&& other);													// Move Constructor (lvalue)
-
-	Camera& operator=(const Camera& other);											// Copy Assignment (lvalue)
-	Camera& operator=(const Camera&& other);										// Move Assignment (rvalue)
+	Camera& operator=(const Camera& other);			// Copy Assignment (lvalue)
+	Camera& operator=(const Camera&& other);		// Move Assignment (rvalue)
 
 	// Methods
-	void Move();									// Move Camera
 	void Update();									// Update Camera
 
+	/*
+	TODO:
+	- Camera class should use quaternions
+	*/
+
+
 	// Getters & Setters
-	
-	// Set Camera Position
-	inline void SetPosition(const vec3& pos)		
-	{
-		this->m_position = pos;
-	}
-
-	// Set Camera Heading
-	inline void SetHeading(const vec3& heading)
-	{
-		this->m_heading = heading;
-	}
-
 	// Get Camera Position
 	inline vec3 GetPositon() const
 	{
 		return this->m_position;
-	}
-
-	// Get Camera Heading
-	inline vec3 GetHeading() const
-	{
-		return this->m_heading;
 	}
 
 	// Get View Matrix
@@ -65,17 +42,19 @@ public:
 		return this->m_projectionMatrix;
 	}
 
-private:
+
 	// Member Variables
 	GLfloat		m_width;
 	GLfloat		m_height;
 
-	vec3		m_position;					// Camera Position
-	vec3		m_heading;					// Camera Heading
-	vec3		m_up;						// Camera Up Vector
+	vec3		m_position;						// Camera Position
+	vec3		m_direction;					// Camera Direction
+	vec3		m_fowardDirection;				// Camera Foward Direction
+	vec3		m_right;						// Camera Right Vector
+	vec3		m_up;							// Camera Up Vector
 
-	mat4		m_viewMatrix;				// View Matrix
-	mat4		m_projectionMatrix;			// Projection or Perspective Matrix
+	mat4		m_viewMatrix;					// View Matrix
+	mat4		m_projectionMatrix;				// Projection or Perspective Matrix
 };
 
 #endif // CAMERA_H

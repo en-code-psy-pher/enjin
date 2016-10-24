@@ -113,12 +113,15 @@ void Game::Initialize()
 // Update the game
 void Game::Update()
 {
+	m_mainCamera.Update();
 	m_view = m_mainCamera.GetViewMatrix();
 }
 
 // Render the game
 void Game::Render()
 {
+	m_view = m_mainCamera.GetViewMatrix();
+
 	// Clear the colorbuffer
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -156,6 +159,15 @@ void Game::HandleKeyboardCallblack(GLFWwindow * window, int key, int scancode, i
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
+
+	if (key == GLFW_KEY_W || key == GLFW_KEY_UP)
+		m_mainCamera.m_position += 0.05f * m_mainCamera.m_fowardDirection;
+	if (key == GLFW_KEY_S || key == GLFW_KEY_DOWN)
+		m_mainCamera.m_position -= 0.05f * m_mainCamera.m_fowardDirection;
+	if (key == GLFW_KEY_A || key == GLFW_KEY_LEFT)
+		m_mainCamera.m_position -= 0.05f * glm::normalize(glm::cross(m_mainCamera.m_fowardDirection, m_mainCamera.m_up));
+	if (key == GLFW_KEY_D || key == GLFW_KEY_RIGHT)
+		m_mainCamera.m_position += 0.05f * glm::normalize(glm::cross(m_mainCamera.m_fowardDirection, m_mainCamera.m_up));
 
 	if (key >= 0 && key < 1024)
 	{
