@@ -9,14 +9,15 @@ public:
 	// Constructors
 	Camera();
 	Camera(const GLfloat& width, const GLfloat& height);
-	Camera(const Camera& other);					// Copy Constructor (lvalue)
-	Camera(const Camera&& other);					// Move Constructor (lvalue)
+	Camera(const Camera& other);																	// Copy Constructor (lvalue)
+	Camera(const Camera&& other);																	// Move Constructor (lvalue)
 
-	Camera& operator=(const Camera& other);			// Copy Assignment (lvalue)
-	Camera& operator=(const Camera&& other);		// Move Assignment (rvalue)
+	Camera& operator=(const Camera& other);															// Copy Assignment (lvalue)
+	Camera& operator=(const Camera&& other);														// Move Assignment (rvalue)
 
 	// Methods
-	void Update();									// Update Camera
+	void ProcessMouseMovement(GLfloat xOffset, GLfloat yOffset, GLboolean constrainPitch = true);
+	void Update();																					// Update Camera
 
 	/*
 	TODO:
@@ -27,7 +28,7 @@ public:
 	// Getters & Setters
 
 	// Get Camera Position
-	inline vec3 GetPositon() const
+	inline vec3 GetPosition() const
 	{
 		return this->m_position;
 	}
@@ -58,6 +59,9 @@ public:
 
 
 	// Member Variables
+
+	GLfloat		m_yaw;
+	GLfloat		m_pitch;
 
 	vec3		m_position;						// Camera Position
 	vec3		m_fowardDirection;				// Camera Foward Direction

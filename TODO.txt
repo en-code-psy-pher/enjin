@@ -1,9 +1,12 @@
 TODO:
-- Refactor Mesh/Model class; read ambient, diffuse, specular, and shininess from .obj files.
+- Refactor Mesh/Model class; read material ambient, diffuse, specular, and shininess from .obj files.
 - Refactor Shader class, https://www.reddit.com/r/gamedev/comments/1smezy/how_to_architect_glsl_shaders_in_a_game_engine/
 - Refactor Texture2D class.
+- Use quaternions for camera rotation
 
 References
 http://www.opengl-tutorial.org/miscellaneous/math-cheatsheet/ 
 http://ogldev.atspace.co.uk/index.html
 http://www.opengl-tutorial.org/
+http://devernay.free.fr/cours/opengl/materials.html
+http://gafferongames.com/game-physics

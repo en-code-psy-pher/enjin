@@ -21,6 +21,11 @@ static void KeyboardCallblack(GLFWwindow* window, int key, int scancode, int act
 	game.HandleKeyboardCallblack(window, key, scancode, action, mode);
 }
 
+static void MouseCallblack(GLFWwindow* window, double xpos, double ypos)
+{
+	game.HandleMouseCallback(window, xpos, ypos);
+}
+
 // GLFW Error call back
 static void ErrorCallback(int error, const char* description)
 {
@@ -64,6 +69,7 @@ int main()
 
 	// Set Callbacks
 	glfwSetKeyCallback(window, KeyboardCallblack);
+	glfwSetCursorPosCallback(window, MouseCallblack);
 
 	// Hide the cursor
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
