@@ -22,7 +22,7 @@ vec3 GetNormal();
 
 vec4 Explode(vec4 position, vec3 normal)
 {
-    float magnitude = 2.0f * _explodeBias;
+    float magnitude = 20.0f * _explodeBias;
     vec3 direction = normal * ((sin(_time) + 1.0f) / 2.0f) * magnitude; 
     return position + vec4(direction, 0.0f);
 }

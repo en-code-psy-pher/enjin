@@ -7,4 +7,4 @@ uniform mat4 _mvpMat;
 void main()
 {
     gl_Position = _mvpMat * vec4(_position, 1.0f);
-} 
+}

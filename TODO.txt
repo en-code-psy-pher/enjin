@@ -1,7 +1,7 @@
 TODO:
 - Refactor Mesh/Model class; read material ambient, diffuse, specular, and shininess from .obj files.
 - Refactor Shader class, https://www.reddit.com/r/gamedev/comments/1smezy/how_to_architect_glsl_shaders_in_a_game_engine/
-- Refactor Texture2D class.
+- Create a FBO class.
 - Use quaternions for camera rotation
 
 References

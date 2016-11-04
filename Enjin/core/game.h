@@ -33,30 +33,10 @@ public:
 	void Render();																// Render game app
 
 private:
-	// Member 
+	// Member Variables
+
 	bool				m_keys[1024];
 	bool				m_firstMouse;
-
-	GLuint				m_lampVAO;
-	GLuint				m_lampVBO;
-
-	GLfloat				m_lastXPos;
-	GLfloat				m_lastYPos;
-	GLfloat				m_width;
-	GLfloat				m_height;
-
-	Camera				m_mainCamera;
-
-	DirectionalLight	m_lightDirectional;
-	vector<PointLight>	m_lightPoints;
-	SpotLight			m_lightSpot;
-
-	Model				m_terrain;
-	Model				m_teapot;
-
-	Shader				m_lampShader;
-	Shader				m_terrainShader;
-	Shader				m_explodeShader;
 
 	float				m_explodeDelta;
 	float				m_angle;
@@ -67,7 +47,33 @@ private:
 	mat4				m_view;
 	mat4				m_mvp;
 
-	void CreateLampMesh(float size);
+	GLuint				m_lampVAO;
+	GLuint				m_boxVAO;
+	GLuint				m_boxVBO;
+
+	GLfloat				m_lastXPos;
+	GLfloat				m_lastYPos;
+	GLfloat				m_width;
+	GLfloat				m_height;
+
+	Camera				m_mainCamera;
+
+	Texture2D			m_texBox;
+
+	Model				m_terrain;
+	Model				m_teapot;
+
+	Shader				m_lampShader;
+	Shader				m_terrainShader;
+	Shader				m_explodeShader;
+	Shader				m_rigidBoxShader;
+
+	DirectionalLight	m_lightDirectional;
+	vector<PointLight>	m_lightPoints;
+	SpotLight			m_lightSpot;
+
+	GLuint CreateBoxMesh(float size);
+	void RenderRigidBoxes();
 	void RenderLamps();
 	void RenderTerrain();
 	void RenderExplodingTeapot();

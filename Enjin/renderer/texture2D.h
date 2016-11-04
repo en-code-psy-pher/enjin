@@ -12,10 +12,7 @@ public:
 	// Constructors
 
 	Texture2D();									// Default Constructor
-
-	// Methods
-
-	void CreateTextureUnit(const char* fileName);
+	Texture2D(const char* fileName);				// Parameter Constructor
 	
 	// Getters & Setters
 

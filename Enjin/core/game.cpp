@@ -28,12 +28,16 @@ Game::~Game()
 // Intialize the game
 void Game::Initialize()
 {
+	m_texBox = Texture2D("assets/textures/container.jpg");
+
 	m_teapot = Model("assets/models/teapot.obj");
 	m_terrain = Model("assets/models/terrain/terrain.obj");
 
-	CreateLampMesh(0.05f);
+	m_boxVAO = CreateBoxMesh(2.0f);
+	m_lampVAO = CreateBoxMesh(0.05f);
 
 	m_lampShader = Shader("assets/shaders/lamp.vs", "assets/shaders/lamp.fs");
+	m_rigidBoxShader = Shader("assets/shaders/rigidBox.vs", "assets/shaders/rigidBox.fs");
 	m_terrainShader = Shader("assets/shaders/terrain.vs", "assets/shaders/terrain.fs");
 	m_explodeShader = Shader("assets/shaders/explode.vs", "assets/shaders/explode.fs", "assets/shaders/explode.gs");
 	
@@ -121,12 +125,15 @@ void Game::Render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	RenderLamps();
+	RenderRigidBoxes();
 	RenderTerrain();
 	RenderExplodingTeapot();
 }
 
-void Game::CreateLampMesh(float size)
+GLuint Game::CreateBoxMesh(float size)
 {
+	GLuint VAO;
+
 	// Set up vertex data (and buffer(s)) and attribute pointers
 	GLfloat vertices[] = {
 		// Positions          // Normals           // Texture Coords
@@ -174,13 +181,13 @@ void Game::CreateLampMesh(float size)
 	};
 
 	// Create buffers/arrays
-	glGenVertexArrays(1, &m_lampVAO);
-	glGenBuffers(1, &m_lampVBO);
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &m_boxVBO);
 
-	glBindBuffer(GL_ARRAY_BUFFER, m_lampVBO);
+	glBindBuffer(GL_ARRAY_BUFFER, m_boxVBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	glBindVertexArray(m_lampVAO);
+	glBindVertexArray(VAO);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
@@ -188,6 +195,38 @@ void Game::CreateLampMesh(float size)
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(2);
 	glBindVertexArray(0);
+
+	return VAO;
+}
+
+void Game::RenderRigidBoxes()
+{
+	m_rigidBoxShader.Use();
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, m_texBox.GetTextureUnit());
+	glUniform1i(glGetUniformLocation(m_lampShader.GetProgram(), "_texture"), 0);
+
+	// Load Identity Matrix
+	m_model = mat4();
+
+	// Translate to origin
+	m_model = glm::translate(m_model, vec3(10.0f, 1.0f, 10.0f));
+	m_model = glm::rotate(m_model, m_angle, vec3(1.0f, 0.0f, 1.0f));
+
+	// Calculate Model View Projection Matrix mvp => projetction * view * model
+	m_mvp = m_projection * m_view * m_model;
+	glUniformMatrix4fv(glGetUniformLocation(m_lampShader.GetProgram(), "_mvpMat"), 1, GL_FALSE, glm::value_ptr(m_mvp));
+
+	// Render Box
+
+	glBindVertexArray(m_boxVAO);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	glBindVertexArray(0);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	glUseProgram(0);
 }
 
 void Game::RenderLamps()
