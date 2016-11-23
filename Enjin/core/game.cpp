@@ -33,8 +33,9 @@ void Game::Initialize()
 	m_teapot = Model("assets/models/teapot.obj");
 	m_terrain = Model("assets/models/terrain/terrain.obj");
 
-	m_boxVAO = CreateBoxMesh(2.0f);
-	m_lampVAO = CreateBoxMesh(0.05f);
+	m_boxObj = CreateBoxMesh(2.0f);
+
+	m_lampObj = CreateBoxMesh(0.05f);
 
 	m_lampShader = Shader("assets/shaders/lamp.vs", "assets/shaders/lamp.fs");
 	m_rigidBoxShader = Shader("assets/shaders/rigidBox.vs", "assets/shaders/rigidBox.fs");
@@ -130,10 +131,8 @@ void Game::Render()
 	RenderExplodingTeapot();
 }
 
-GLuint Game::CreateBoxMesh(float size)
+RenderObject Game::CreateBoxMesh(float size)
 {
-	GLuint VAO;
-
 	// Set up vertex data (and buffer(s)) and attribute pointers
 	GLfloat vertices[] = {
 		// Positions          // Normals           // Texture Coords
@@ -180,23 +179,7 @@ GLuint Game::CreateBoxMesh(float size)
 		-size,  size, -size,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f
 	};
 
-	// Create buffers/arrays
-	glGenVertexArrays(1, &VAO);
-	glGenBuffers(1, &m_boxVBO);
-
-	glBindBuffer(GL_ARRAY_BUFFER, m_boxVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	glBindVertexArray(VAO);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
-	glEnableVertexAttribArray(2);
-	glBindVertexArray(0);
-
-	return VAO;
+	return RenderObject(vertices, (8 * 6) * 6, 36);
 }
 
 void Game::RenderRigidBoxes()
@@ -220,9 +203,11 @@ void Game::RenderRigidBoxes()
 
 	// Render Box
 
-	glBindVertexArray(m_boxVAO);
-	glDrawArrays(GL_TRIANGLES, 0, 36);
-	glBindVertexArray(0);
+	//glBindVertexArray(m_boxVAO);
+	//glDrawArrays(GL_TRIANGLES, 0, 36);
+	//glBindVertexArray(0);
+
+	m_boxObj.DrawObject();
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -247,9 +232,7 @@ void Game::RenderLamps()
 
 		// Render Lamp
 
-		glBindVertexArray(m_lampVAO);
-		glDrawArrays(GL_TRIANGLES, 0, 36);
-		glBindVertexArray(0);
+		m_lampObj.DrawObject();
 	}
 
 	glUseProgram(0);

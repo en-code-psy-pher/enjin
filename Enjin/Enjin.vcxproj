@@ -161,6 +161,8 @@
     <ClCompile Include="renderer\mesh.cpp" />
     <ClCompile Include="renderer\model.cpp" />
     <ClCompile Include="renderer\pointLight.cpp" />
+    <ClCompile Include="renderer\pointRender.cpp" />
+    <ClCompile Include="renderer\renderObject.cpp" />
     <ClCompile Include="renderer\shader.cpp" />
     <ClCompile Include="renderer\spotLight.cpp" />
     <ClCompile Include="renderer\texture2D.cpp" />
@@ -174,6 +176,8 @@
     <ClInclude Include="renderer\mesh.h" />
     <ClInclude Include="renderer\model.h" />
     <ClInclude Include="renderer\pointLight.h" />
+    <ClInclude Include="renderer\pointRender.h" />
+    <ClInclude Include="renderer\renderObject.h" />
     <ClInclude Include="renderer\shader.h" />
     <ClInclude Include="renderer\spotLight.h" />
     <ClInclude Include="renderer\texture2D.h" />

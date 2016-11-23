@@ -56,7 +56,7 @@ int main()
 	height = 600.0f;
 
 	// Create and set window
-	window = glfwCreateWindow(width, height, "Enjin 0.0", NULL, NULL);
+	window = glfwCreateWindow((int)width, (int)height, "Enjin 0.0", NULL, NULL);
 
 	if (!window)
 	{

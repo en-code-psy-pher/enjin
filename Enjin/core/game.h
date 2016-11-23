@@ -1,15 +1,16 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "config.h"
-
-#include "camera.h"
-#include "shader.h"
-#include "pointLight.h"
-#include "directionalLight.h"
-#include "spotLight.h"
-#include "model.h"
-#include "texture2D.h"
+#include "../core/config.h"
+#include "../core/camera.h"
+#include "../renderer/shader.h"
+#include "../renderer/pointLight.h"
+#include "../renderer/directionalLight.h"
+#include "../renderer/spotLight.h"
+#include "../renderer/model.h"
+#include "../renderer/texture2D.h"
+#include "../renderer/renderObject.h"
+#include "../renderer/pointRender.h"
 
 static const int k_N_POINT_LIGHTS = 5;
 
@@ -72,7 +73,10 @@ private:
 	vector<PointLight>	m_lightPoints;
 	SpotLight			m_lightSpot;
 
-	GLuint CreateBoxMesh(float size);
+	RenderObject		m_boxObj;
+	RenderObject		m_lampObj;
+
+	RenderObject CreateBoxMesh(float size);
 	void RenderRigidBoxes();
 	void RenderLamps();
 	void RenderTerrain();
